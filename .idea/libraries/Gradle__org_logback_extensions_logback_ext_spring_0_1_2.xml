@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.logback-extensions:logback-ext-spring:0.1.2">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.logback-extensions/logback-ext-spring/0.1.2/3466779c4cae1d39b0deac1615dc01c46cef1c10/logback-ext-spring-0.1.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.logback-extensions/logback-ext-spring/0.1.2/1329e0c62b69020e520c8d83cb8685238035d0b3/logback-ext-spring-0.1.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

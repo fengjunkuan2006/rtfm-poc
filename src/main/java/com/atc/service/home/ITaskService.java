@@ -1,0 +1,1 @@
+package com.atc.service.home;import com.atc.domains.home.entity.Task;import java.util.List;/** * Created by Vic.Feng on 30/11/2015. */public interface ITaskService {    /**     * Get all tasks     *     * @return     */    public List<Task> getAllTasks();}

@@ -1,0 +1,1 @@
+package com.atc.common.constant;/** * Created by Vic.Feng on 30/11/2015. */public class ResultCodes {    public static final int SUCCESS = 0;    public static final int FAIL = 1;    public static final int ERROR = 2;}

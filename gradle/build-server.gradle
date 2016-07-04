@@ -1,0 +1,32 @@
+//Copy other files
+task copyOtherFiles(type: Copy) << {
+    from 'src/main/webapp/staticmedia/themes/base/images'
+    into project.destDir + '/images'
+}
+
+remotes {
+    tomcatServer {
+        host = '10.10.1.15'
+        user = System.properties['user.name']
+        identity = file("${System.properties['user.home']}/.ssh/id_rsa")
+    }
+    nginxServer {
+        host = '10.10.1.25'
+        user = System.properties['user.name']
+        identity = file("${System.properties['user.home']}/.ssh/id_rsa")
+    }
+}
+
+//Deploy web app to server
+task deployToServer(dependsOn: ['test', 'minifyJs', 'minifyCss', 'copyOtherFiles', war]) << {
+    ssh.run {
+        session(remotes.tomcatServer) {
+            put from: war.archivePath.path, into: '/usr/tomcat8/webapps'
+            execute 'sudo /usr/tomcat8/bin/shutdown.sh'
+            execute 'sudo /usr/tomcat8/bin/startup.sh'
+        }
+        session(remotes.nginxServer) {
+            put from: 'src/main/webapp/staticmedia', into: '/usr/local/nginx'
+        }
+    }
+}

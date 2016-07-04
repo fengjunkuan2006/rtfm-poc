@@ -1,0 +1,50 @@
+apply plugin: 'css'
+
+// Declare css source
+css.source {
+    dev {
+        css {
+            srcDir project.baseDir
+            include "**/*.css"
+
+            //Exclude .min.css files
+            //exclude "**/*.min.css"
+        }
+    }
+}
+
+def fileCssAll = file(project.destDir + "/all.css")
+def fileCssMin = file(project.destDir + "/all.min.css")
+def fileCssGzip = file(project.destDir + "/all.min.css.gz")
+
+task deleteCssFiles << {
+    if(fileCssAll.exists()) {
+        fileCssAll.delete()
+    }
+    if(fileCssMin.exists()) {
+        fileCssMin.delete()
+    }
+    if(fileCssGzip.exists()) {
+        fileCssGzip.delete()
+    }
+}
+
+// Combine css files
+combineCss {
+    source = css.source.dev.css.files
+    dest = fileCssAll
+}
+combineCss.dependsOn deleteCssFiles
+//Minify combined css file
+minifyCss {
+    source = combineCss
+    dest = fileCssMin
+    yuicompressor { // Optional
+        lineBreakPos = -1
+    }
+}
+//Zip minified css file
+gzipCss {
+    source = minifyCss
+    dest = fileCssGzip
+}

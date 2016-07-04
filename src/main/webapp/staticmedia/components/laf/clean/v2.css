@@ -1,0 +1,457 @@
+
+a.calendar {
+	color: black;
+	font-family: Verdana, Arial, Helvetica, Geneva, Swiss, SunSans-Regular;
+	text-decoration: none;
+	font-size: 9px;
+	font-weight: normal;
+	padding: 1px 20px 1px 1px;
+}
+
+a.calendar:hover {
+	color: red;
+	background: #9ab2b5;
+}
+
+a {
+	color: #000066;
+	font-family: Verdana, Arial, Helvetica, Geneva, Swiss, SunSans-Regular;
+	text-decoration: none;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+a:hover {
+	color: #6464FF;
+	background: #9ab2b5;
+}
+
+.menuheadertext {
+	color: grey;
+	text-decoration: none;
+	font-family: Verdana, Arial, Helvetica, Geneva, Swiss, SunSans-Regular;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.menu {
+	color: #000066;
+	font-family: Verdana, Arial, Helvetica, Geneva, Swiss, SunSans-Regular;
+	text-decoration: none;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.menu:hover {
+	color: #6464FF;
+}
+
+.textlink {
+	color: #000066;
+	font-family: Verdana, Arial, Helvetica, Geneva, Swiss, SunSans-Regular;
+	text-decoration: underline;
+	font-size: 12px;
+	font-weight: normal;
+}
+
+.documentlink {
+	color: #0000ff;
+	font-family: Verdana, Arial, Helvetica, Geneva, Swiss, SunSans-Regular;
+	text-decoration: underline;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.textlink:hover {
+	color: #6464FF;
+}
+
+.titletext {
+	color: black;
+	font-family: Verdana, Arial, Helvetica, Geneva, Swiss, SunSans-Regular;
+	font-size: 18px;
+	font-weight: normal;
+}
+
+.subtitletext {
+	color: white;
+	font-family: Verdana, Arial, Helvetica, Geneva, Swiss, SunSans-Regular;
+	font-size: 12px;
+	font-weight: bold;
+	background: #a3b3d1;
+	height: 18px;
+}
+
+.labeltext {
+	color: black;
+	font-family: Verdana, Arial, Helvetica, Geneva, Swiss, SunSans-Regular;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.messagetext {
+	color: black;
+	font-family: Verdana, Arial, Helvetica, Geneva, Swiss, SunSans-Regular;
+	font-size: 14px;
+	font-weight: normal;
+}
+
+.errortext {
+	color: red;
+	font-family: Verdana, Arial, Helvetica, Geneva, Swiss, SunSans-Regular;
+	font-size: 12px;
+	font-weight: normal;
+}
+
+.standardtext {
+	color: black;
+	font-family: Verdana, Arial, Helvetica, Geneva, Swiss, SunSans-Regular;
+	font-size: 12px;
+	font-weight: normal;
+}
+
+.inputtext {
+	color: black;
+	font-family: Verdana, Arial, Helvetica, Geneva, Swiss, SunSans-Regular;
+	font-size: 12px;
+	font-weight: normal;
+}
+
+/* Orange hinting for text / textarea / select */
+input[type=text], input[type=password], textarea, select {
+  -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -ms-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
+  outline: none;
+  padding: 3px 0px 3px 3px;
+  margin: 3px 2px 3px 2px;
+  border: 1px solid #a9a9a9;
+}
+
+/* Orange hinting for text / textarea / select */
+input[type=text]:focus, input[type=password]:focus, textarea:focus, select:focus {
+  box-shadow: 0 0 5px rgb(231, 159, 45);
+  padding: 3px 0px 3px 3px;
+  margin: 3px 2px 3px 2px;
+  border: 1px solid rgb(226, 165, 59);
+}
+
+/*!
+Pure v0.5.0
+Copyright 2014 Yahoo! Inc. All rights reserved.
+Licensed under the BSD License.
+https://github.com/yui/pure/blob/master/LICENSE.md
+*/
+.pure-button {
+    /* Structure */
+    display: inline-block;
+    *display: inline; /*IE 6/7*/
+    zoom: 1;
+    line-height: normal;
+    white-space: nowrap;
+    vertical-align: baseline;
+    text-align: center;
+    cursor: pointer;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin-top: 1px;
+    margin-right: 2px;
+    margin-bottom: 1px;
+    margin-left: 2px;
+}
+
+/* Firefox: Get rid of the inner focus border */
+.pure-button::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+
+/*csslint outline-none:false*/
+
+.pure-button {
+    font-family: inherit;
+    font-size: 100%;
+    *font-size: 90%; /*IE 6/7 - To reduce IE's oversized button text*/
+    *overflow: visible; /*IE 6/7 - Because of IE's overly large left/right padding on buttons */
+    padding: 0.5em 1em;
+    color: #444; /* rgba not supported (IE 8) */
+    color: rgba(0, 0, 0, 0.80); /* rgba supported */
+    *color: #444; /* IE 6 & 7 */
+    border: 1px solid #999;  /*IE 6/7/8*/
+    border: none rgba(0, 0, 0, 0);  /*IE9 + everything else*/
+    background-color: #c8c8c8;
+    text-decoration: none;
+    border-radius: 2px;
+}
+
+.pure-button-hover,
+.pure-button:hover,
+.pure-button:focus {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#1a000000',GradientType=0);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(transparent), color-stop(40%, rgba(0,0,0, 0.05)), to(rgba(0,0,0, 0.10)));
+    background-image: -webkit-linear-gradient(transparent, rgba(0,0,0, 0.05) 40%, rgba(0,0,0, 0.10));
+    background-image: -moz-linear-gradient(top, rgba(0,0,0, 0.05) 0%, rgba(0,0,0, 0.10));
+    background-image: -o-linear-gradient(transparent, rgba(0,0,0, 0.05) 40%, rgba(0,0,0, 0.10));
+    background-image: linear-gradient(transparent, rgba(0,0,0, 0.05) 40%, rgba(0,0,0, 0.10));
+}
+.pure-button:focus {
+    outline: 0;
+}
+.pure-button-active,
+.pure-button:active {
+    box-shadow: 0 0 0 1px rgba(0,0,0, 0.15) inset, 0 0 6px rgba(0,0,0, 0.20) inset;
+}
+
+.pure-button[disabled],
+.pure-button-disabled,
+.pure-button-disabled:hover,
+.pure-button-disabled:focus,
+.pure-button-disabled:active {
+    border: none;
+    background-image: none;
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+    filter: alpha(opacity=40);
+    -khtml-opacity: 0.40;
+    -moz-opacity: 0.40;
+    opacity: 0.40;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.pure-button-hidden {
+    display: none;
+}
+
+/* Firefox: Get rid of the inner focus border */
+.pure-button::-moz-focus-inner{
+    padding: 0;
+    border: 0;
+}
+
+.pure-button-primary,
+.pure-button-selected,
+a.pure-button-primary,
+a.pure-button-selected {
+    background-color: rgb(0, 120, 231);
+    color: #fff;
+}
+
+
+/* Buttons */
+.buttontext {
+	color: #000066;
+	font-family: Verdana, Arial, Helvetica, Geneva, Swiss, SunSans-Regular;
+	font-size: 12px;
+}
+
+.tableButton {
+	color: black;
+	font-family: Verdana, Arial, Helvetica, Geneva, Swiss, SunSans-Regular;
+	font-size: 12px;
+	font-weight: normal;
+}
+
+tbody {
+	color: black;
+	font-family: Verdana, Arial, Helvetica, Geneva, Swiss, SunSans-Regular;
+	font-size: 12px;
+	font-weight: normal;
+}
+
+th {
+	color: white;
+	font-family: Verdana, Arial, Helvetica, Geneva, Swiss, SunSans-Regular;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+option {
+	color: black;
+	font-family: Verdana, Arial, Helvetica, Geneva, Swiss, SunSans-Regular;
+	font-size: 12px;
+	font-weight: normal;
+}
+
+select {
+	font-family: Verdana, Arial, Helvetica, Geneva, Swiss, SunSans-Regular;
+	font-size: 12px;
+	font-weight: normal;
+}
+
+.spokesoft_srs_th {
+	background: #cad5e6;
+	color: #000066;
+	font-weight: bold;
+}
+
+.spokesoft_srs_tbody {
+	background: #dbe2ee;
+	color: black;
+}
+
+.spokesoft_srs_clean_table {
+	border-style: solid;
+	border-color: #a3b3d1;
+	border-width: 1px;
+	background: white;
+	padding:2px;
+	color: black;
+}
+
+.spokesoft_srs_clean_tbody {
+	border-style: none;
+	border-color: white;
+	border-width: 1px;
+	background: white;
+	padding: 2px;
+	color: black;
+}
+
+.spokesoft_srs_clean_tbody_stripe {
+	background: #d9d9d9;
+	color: black;
+}
+
+.spokesoft_srs_ttotal {
+	background: #BEBEBE;
+	color: black;
+	font-weight: bold
+}
+
+.spokesoft_weekend {
+	background: #a3b3d1;
+	color: #808060;
+}
+
+.spokesoft_calendar_header {
+	background: #7285a6;
+	color: #ffffff;
+}
+
+.spokesoft_even {
+	background: #7285a6;
+	color: black;
+}
+
+.spokesoft_odd {
+	background: #a3b3d1;
+	color: #dbe2ee;
+}
+
+.spokesoft_green {
+	background: #a6d06a;
+	color: black;
+}
+
+.spokesoft_amber {
+	background: #ecc476;
+	color: black;
+}
+
+.spokesoft_red {
+	background: #ec3939;
+	/*background: #ffaaaa;*/
+	color: black;
+}
+
+.spokesoft_white {
+	background: #ffffff;
+	color: black;
+}
+
+.spokesoft_selected_row {
+	background: #949188;
+	color: black;
+}
+
+.spokesoft_srs_formHeader {
+	background-image: url(images/win_top_bg.gif);
+	color: black;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.spokesoft_srs_header_text {
+	font-family: Verdana, Arial, Helvetica, Geneva, Swiss, SunSans-Regular;
+	color: black;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.messagebox {
+	background: white;
+	border-style: solid;
+	border-color: white;
+	border-width: 1px
+}
+
+.breadcrumbtext {
+	color: black;
+	font-family: Verdana, Arial, Helvetica, Geneva, Swiss, SunSans-Regular;
+	font-size: 12px;
+	font-weight: bold;
+	background-color: white;
+}
+
+#menu {
+	margin: 0px;
+	height: 32px;
+	padding-bottom: 0cm;
+	background-color: white;
+	border-bottom: 3px solid #7285a6;
+}
+
+#menu li {
+	background: #9ab2b5
+	list-style: none;
+	display: inline;
+	line-height: 33px;
+}
+
+#menu li a {
+	background: #9aa7bf url(images/tabcornerdeselected.gif) no-repeat top right;
+	text-decoration: none;
+	margin: 0;
+	padding: 9px 10px 10px 10px;
+	font-weight: bold;
+	color: black;
+}
+
+#menu li a:hover {
+	color: #fff;
+	background: #959eae url(images/tabcornerover.gif) no-repeat top right;
+	margin: 0;
+}
+
+#menu li.current {
+	background: #7285a6 url(images/tabcornerselected.gif) no-repeat top right;
+	padding: 9px 10px 10px 10px;
+	font-weight: bold;
+	color: black;
+}
+
+#formmenutable table {
+	background: #7285a6;
+}
+
+#formmenutable td {
+	background: #7285a6;
+}
+
+table.TabTable {
+	width: 100%;
+	border-width: 0px 0px 6px 2px;
+	border-spacing: 0px 0px;
+	border-style: solid solid solid solid;
+	border-color: #7285a6 #7285a6 #7285a6 #7285a6;
+	border-collapse: separate;
+	background-color: #7285a6;
+}
+
+FORM {
+	display: inline;
+}

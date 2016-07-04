@@ -1,0 +1,54 @@
+apply plugin: 'js'
+
+// Declare js source
+javascript.source {
+    dev {
+        js {
+            srcDir project.baseDir
+            include "**/*.js"
+
+            //Exclude config files
+            exclude "js/siteLocator/config/*.js"
+
+            //Exclude JQuery and resource js files
+            exclude "components/jquery/*.js"
+            exclude "i18n/*.js"
+        }
+    }
+}
+
+def fileJsAll = file(project.destDir + "/all.js")
+def fileJsMin = file(project.destDir + "/all.min.js")
+def fileJsGzip = file(project.destDir + "/all.min.js.gz")
+
+task deleteJsFiles << {
+    if(fileJsAll.exists()) {
+        fileJsAll.delete()
+    }
+    if(fileJsMin.exists()) {
+        fileJsMin.delete()
+    }
+    if(fileJsGzip.exists()) {
+        fileJsGzip.delete()
+    }
+}
+
+// Combine js files
+combineJs {
+    source = javascript.source.dev.js.files
+    dest = fileJsAll
+}
+combineJs.dependsOn deleteJsFiles
+//Minify combined js file
+minifyJs {
+    source = combineJs
+    dest = fileJsMin
+    closure {
+        warningLevel = 'QUIET'
+    }
+}
+//Zip minified js file
+gzipJs {
+    source = minifyJs
+    dest = fileJsGzip
+}

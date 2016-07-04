@@ -1,0 +1,1 @@
+package com.atc.common.constant.home;import com.atc.common.constant.ResultCodes;/** * Created by Vic.Feng on 30/11/2015. */public class UserResultCode extends ResultCodes {    public static final int USERNAME_OR_PASSWORD_INVALID = 11;}
