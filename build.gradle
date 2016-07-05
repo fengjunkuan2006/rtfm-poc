@@ -116,6 +116,20 @@ test {
     include '**/*Test.class'
 }
 
+// Robot Test
+task runRobotTest(type:Exec) {
+  //on windows:
+  commandLine 'cmd', '', 'pybot -d ./output robot_test.txt'
+  
+  //store the output instead of printing to the console:
+  standardOutput = new ByteArrayOutputStream()
+ 
+  //extension method stopTomcat.output() can be used to obtain the output:
+  ext.output = {
+    return standardOutput.toString()
+  }
+}
+
 // Declare root & destination dir
 ext {
     baseDir = '/src/main/webapp/staticmedia'
