@@ -117,7 +117,7 @@ test {
 }
 
 // Robot Test
-task runRobotTest(type:Exec) {
+/*task runRobotTest(type:Exec) {
   //on windows:
   commandLine 'cmd', '', 'pybot -d ./output robot_test.txt'
   
@@ -129,7 +129,7 @@ task runRobotTest(type:Exec) {
     return standardOutput.toString()
   }
 }
-
+*/
 // Declare root & destination dir
 ext {
     baseDir = '/src/main/webapp/staticmedia'
