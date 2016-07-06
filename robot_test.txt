@@ -3,7 +3,7 @@ Library           Selenium2Library
 
 *** Test Cases ***
 login
-    Open Browser    http://10.10.2.32:8048/home    chrome
+    Open Browser    http://10.10.2.238:6002    chrome
     Maximize Browser Window
     Input Text    //*[@id="USERNAME"]    admin
     Input Password    //*[@id="PASSWORD"]    123456
