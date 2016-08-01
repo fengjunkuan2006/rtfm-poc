@@ -4287,17 +4287,17 @@
     function submitInfo() {
         $.ajax({
             url: "/customerAccount",
-            data: '{"keyId":0, "org":"AWSIE", "name":"' + $("#inputName").val() + '",' +
+            data: '{"name":"' + $("#inputName").val() + '",' +
             ' "number":"' + $("#Number").val() + '",' + '"location":"1",' +
             ' "active":' + checkstate + '}',
             type: "POST",
             dataType: "json",
             contentType: "application/json",
             async: false,
-            success: function (data) {
-                $("#info").text("Add Success");
+            success: function (responseText) {
+                $("#message").text(responseText.message);
 
-                setTimeout('document.getElementById("info").innerHTML="";', 2000);
+                setTimeout('$("#message").text("")', 2000);
             },
             error: function () {
                 alert("Error");
