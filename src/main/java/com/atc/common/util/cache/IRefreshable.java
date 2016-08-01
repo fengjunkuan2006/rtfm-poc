@@ -1,1 +1,0 @@
-package com.atc.common.util.cache;/** * Created by Vic.Feng on 15/12/2015. */public interface IRefreshable {    /**     * Refresh this object     *     * @throws IRefreshableException If there is an error during refreshing the object     */    public void refresh() throws IRefreshableException;}

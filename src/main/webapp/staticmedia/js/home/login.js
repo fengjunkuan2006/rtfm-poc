@@ -15,7 +15,7 @@ function login() {
         async: false,
         success: function (responseText) {
             if (responseText.code == 0) {
-                window.location.href = '/main';
+                window.location.href = '/asset/searchPage';
             } else {
                 alert("Error");
             }

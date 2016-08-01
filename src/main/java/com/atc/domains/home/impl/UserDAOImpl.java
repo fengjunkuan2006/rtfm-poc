@@ -1,7 +1,7 @@
 package com.atc.domains.home.impl;
 
 import com.atc.domains.home.IUserDAO;
-import com.atc.domains.home.entity.User;
+import com.atc.domains.home.entity.Actor;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -22,14 +22,14 @@ public class UserDAOImpl implements IUserDAO {
         return sessionFactory.openSession();
     }
 
-    public User selectUserByNameAndPassword(String username, String password, String organisation) {
-        org.hibernate.Criteria criteria = getSession().createCriteria(User.class);
-        criteria.add(Restrictions.eq("username", username));
+    public Actor selectUserByNameAndPassword(String username, String password, String organisation) {
+        org.hibernate.Criteria criteria = getSession().createCriteria(Actor.class);
+        criteria.add(Restrictions.eq("loginName", username));
         criteria.add(Restrictions.eq("password", password));
-        criteria.add(Restrictions.eq("organisation", organisation));
+        criteria.add(Restrictions.eq("org", organisation));
         List users = criteria.list();
         if (users.size() > 0) {
-            return (User) users.get(0);
+            return (Actor) users.get(0);
         }
         return null;
     }

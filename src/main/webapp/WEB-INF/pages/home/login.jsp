@@ -31,7 +31,6 @@
                                   enctype='application/x-www-form-urlencoded'>
                                 <ul id='menu'>
                                     <li class='current'>Log In</li>
-                                    <li><a href='Dispatcher?nvcm=RootContext_241'>Password Reminder</a></li>
                                 </ul>
                                 <input name='nvcm' type='hidden' value=';'/></form>
                         </td>
@@ -55,14 +54,14 @@
                                                 <td class='spokesoft_srs_th'>Login Name</td>
                                                 <td class='spokesoft_srs_tbody'><input class='inputtext' id='USERNAME'
                                                                                        name='USERNAME' tabindex='2'
-                                                                                       maxlength='80' value='' size='20'
+                                                                                       maxlength='80' value='adm-mcrowley' size='20'
                                                                                        type='text'/></td>
                                             </tr>
                                             <tr>
                                                 <td class='spokesoft_srs_th'>Password</td>
                                                 <td class='spokesoft_srs_tbody'><input class='inputtext' id='PASSWORD'
                                                                                        name='PASSWORD' tabindex='3'
-                                                                                       maxlength='50' value='' size='20'
+                                                                                       maxlength='50' value='spokey' size='20'
                                                                                        type='password'/></td>
                                             </tr>
                                             <tr>

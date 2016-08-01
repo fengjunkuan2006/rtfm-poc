@@ -1,0 +1,1 @@
+package com.atc.service.group;import com.atc.domains.group.entity.Group;import java.util.List;/** * Created by Vic.Feng on 30/11/2015. */public interface IGroupService {    List<Group> getGroupList();}

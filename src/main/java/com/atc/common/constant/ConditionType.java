@@ -1,1 +1,0 @@
-package com.atc.common.constant;/** * Created by Vic.Feng on 03/12/2015. */public class ConditionType {    public static final int BEGINS_WITH = 1;    public static final int CONTAINS = 2;    public static final int EQUALS = 3;}

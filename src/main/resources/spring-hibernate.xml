@@ -27,8 +27,11 @@
         </property>
         <property name="annotatedClasses">
             <list>
-                <value>com.atc.domains.home.entity.User</value>
-                <value>com.atc.domains.home.entity.Task</value>
+                <value>com.atc.domains.group.entity.Group</value>
+                <value>com.atc.domains.asset.entity.Asset</value>
+                <value>com.atc.domains.customerAccount.entity.CustomerAccount</value>
+                <value>com.atc.domains.location.entity.Location</value>
+                <value>com.atc.domains.home.entity.Actor</value>
             </list>
         </property>
     </bean>
