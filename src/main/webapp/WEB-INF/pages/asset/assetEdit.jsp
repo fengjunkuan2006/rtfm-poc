@@ -156,7 +156,7 @@
 <script type="text/javascript">
             $(function(){
                 $.ajax({
-                    url:"/accounts",
+                    url:"/customerAccounts",
                     type:"GET",
                     async:true,
                     success:function(data){
@@ -175,10 +175,24 @@
                     async:true,
                     success:function(data){
                         $.each(data,function(i,item){
-                            if(item.keyId == ${assets.accountId}){
+                            if(item.keyId == ${assets.locationId}){
                                 $("#Location").append("<option value=" + item.keyId + " selected='selected' >" + item.name + "</option>");
                             }else {
                                 $("#Location").append("<option value=" + item.keyId + " >" + item.name + "</option>");
+                            }
+                        })
+                    }
+                })
+                $.ajax({
+                    url:"/groups",
+                    type:"GET",
+                    async:true,
+                    success:function(data){
+                        $.each(data,function(i,item){
+                            if(item.keyId == ${assets.groupId}){
+                                $("#AssetGroup").append("<option value=" + item.keyId + " selected='selected' >" + item.name + "</option>");
+                            }else {
+                                $("#AssetGroup").append("<option value=" + item.keyId + " >" + item.name + "</option>");
                             }
                         })
                     }
