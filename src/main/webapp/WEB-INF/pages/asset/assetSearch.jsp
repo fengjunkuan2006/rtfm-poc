@@ -145,6 +145,17 @@
                 });
             }
         });
+
+            $.ajax({
+                url: "/groups",
+                type: "GET",
+                async: true,
+                success: function (data) {
+                    $.each(data, function (i, item) {
+                        $("#AssetGroup").append("<option value=" + item.keyId + " >" + item.name + "</option>");
+                    });
+                }
+            });
     })
 </script>
 </body>

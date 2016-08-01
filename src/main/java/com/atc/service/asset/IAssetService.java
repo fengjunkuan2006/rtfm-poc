@@ -9,29 +9,33 @@ import java.util.List;
  */
 public interface IAssetService {
     /**
-     * addAsset
+     * Add Asset
+     *
      * @param asset
      * @return
      */
     int addAsset(Asset asset);
 
     /**
-     * findAssets
+     * Get Assetr List
+     *
      * @param assets
-     * @return
+     * @return List<Asset>
      */
     List<Asset> findAssets(Asset assets);
 
     /**
-     * getAsset
-     * @param id
-     * @return
+     * Get Asset By AssetId
+     *
+     * @param id Asset  keyId
+     * @return Asset
      */
     Asset get(Integer id);
 
     /**
-     * uodateAsset
-     * @param id
+     * Update Asset By AssetId
+     *
+     * @param id  Asset  keyId
      * @param assets
      */
     void update(Integer id, Asset assets);

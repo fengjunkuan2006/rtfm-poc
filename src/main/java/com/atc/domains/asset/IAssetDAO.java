@@ -8,30 +8,29 @@ import java.util.List;
  * Created by Viki.Feng on 01/02/2016.
  */
 public interface IAssetDAO {
-    /**
-     * insertAsset
-     * @param asset
-     * @return
-     */
+
     int insertAsset(Asset asset);
 
     /**
-     * findAssets
+     * Find Asset List
+     *
      * @param assets
-     * @return
+     * @return List<Asset>
      */
     List<Asset> findAssets(Asset assets);
 
     /**
-     * getAsset
-     * @param id
-     * @return
+     * Get Asset By AssetId
+     *
+     * @param id Asset keyId
+     * @return Asset
      */
     Asset get(Integer id);
 
     /**
-     * updateAsset
-     * @param id
+     * Update Asset By keyId
+     *
+     * @param id Asset KetId
      * @param assets
      */
     void update(Integer id, Asset assets);
