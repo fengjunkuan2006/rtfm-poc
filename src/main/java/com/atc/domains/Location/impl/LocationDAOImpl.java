@@ -2,8 +2,10 @@ package com.atc.domains.location.impl;
 
 import com.atc.domains.location.ILocationDAO;
 import com.atc.domains.location.entity.Location;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -25,5 +27,13 @@ public class LocationDAOImpl implements ILocationDAO {
         org.hibernate.Criteria criteria = getSession().createCriteria(Location.class);
         List<Location> list = criteria.list();
         return list;
+    }
+
+    public List<Location> getLocationsById(Integer id, String org) {
+        org.hibernate.Criteria criteria = getSession().createCriteria(Location.class);
+        criteria.add(Restrictions.eq("parentNodeId", id));
+        criteria.add(Restrictions.eq("org", org));
+        List<Location> locations = criteria.list();
+        return locations;
     }
 }

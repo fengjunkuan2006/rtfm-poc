@@ -20,6 +20,8 @@ public class Location {
     private Integer keyId;
     @Column(name = "LABEL")
     private String name;
+    @Column(name = "PARENTNODEID")
+    private Integer parentNodeId;
 
     public Location() {
     }
@@ -46,5 +48,13 @@ public class Location {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getParentNodeId() {
+        return parentNodeId;
+    }
+
+    public void setParentNodeId(Integer parentNodeId) {
+        this.parentNodeId = parentNodeId;
     }
 }
