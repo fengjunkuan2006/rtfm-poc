@@ -59,7 +59,8 @@
                         <td>
                             <table id='Green_TabContentTable' cellspacing='0' class='TabTable' cellpadding='0'>
                                 <tr>
-                                    <td><span><span><form action='/asset/${assets.keyId}' method='post' enctype='multipart/form-data'>
+                                    <td><span><span><form action='/asset/${assets.keyId}' method='post'
+                                                          enctype='multipart/form-data'>
                                         <style type='text/css'>.type-file-box {
                                             position: relative;
                                             width: 260px
@@ -105,7 +106,9 @@
                                             </tr>
                                             <tr>
                                                 <td class='spokesoft_srs_th'>Customer Account (*)</td>
-                                                <td colspan='3' class='spokesoft_srs_tbody'><select id='CustomerAccount' class='inputtext' name='accountId'>
+                                                <td colspan='3' class='spokesoft_srs_tbody'><select id='CustomerAccount'
+                                                                                                    class='inputtext'
+                                                                                                    name='accountId'>
                                                     <%--<option value='${assets.accountId}' label='Select an Account'>${assets.accountId}</option>--%>
 
                                                 </select><input id='AddAccountButton' value='Add Account'
@@ -115,15 +118,22 @@
                                             </tr>
                                             <tr>
                                                 <td class='spokesoft_srs_th'>Location (*)</td>
-                                                <td colspan='3' class='spokesoft_srs_tbody'><select id='Location' class='inputtext' name='locationId'>
-                                                    <option value='${assets.locationId}' label='Select an Account'>${assets.locationId}</option></select></td>
+                                                <td colspan='3' class='spokesoft_srs_tbody'><input
+                                                        name='locationId' id="locationId" type="hidden"
+                                                        value="0"><select id="Location" class='inputtext'>
+                                                    <option value='${assets.locationId}' label='Select an Account'
+                                                            selected="selected">${assets.locationId}</option>
+                                                </select>
+                                                    <span id="locat"></span></td>
                                             </tr>
                                             <tr>
                                                 <td class='spokesoft_srs_th'>Manufacturer</td>
                                                 <td class='spokesoft_srs_tbody'><input class='inputtext'
                                                                                        id='Manufacturer'
                                                                                        name='manufacturer'
-                                                                                       maxlength='50' value='${assets.manufacturer}' size='30'
+                                                                                       maxlength='50'
+                                                                                       value='${assets.manufacturer}'
+                                                                                       size='30'
                                                                                        type='text'/></td>
                                             </tr>
                                             <tr>
@@ -131,18 +141,23 @@
                                                 <td class='spokesoft_srs_tbody'><input class='inputtext'
                                                                                        id='SerialNumber'
                                                                                        name='serialNumber'
-                                                                                       maxlength='50' value='${assets.serialNumber}' size='30'
+                                                                                       maxlength='50'
+                                                                                       value='${assets.serialNumber}'
+                                                                                       size='30'
                                                                                        type='text'/></td>
                                             </tr>
                                             <tr>
                                                 <td class='spokesoft_srs_th'>Group (*)</td>
-                                                <td class='spokesoft_srs_tbody'><select id='AssetGroup' name='groupId' class='inputtext'>
-                                                    <option value='${assets.groupId}' label='No group'>${assets.groupId}</option></select></td>
+                                                <td class='spokesoft_srs_tbody'><select id='AssetGroup' name='groupId'
+                                                                                        class='inputtext'>
+                                                    <option value='${assets.groupId}'
+                                                            label='No group'>${assets.groupId}</option>
+                                                </select></td>
                                             </tr>
                                         </table>
                                         <input id='UpdateButton' value='Update' class='pure-button' name='UpdateButton'
                                                type='submit'/></form><script language='Javascript'>
-                                    cal.manageFields('LastServiced_trigger', 'LastServiced', '%d/%m/%Y');</script></span></span>
+                                        cal.manageFields('LastServiced_trigger', 'LastServiced', '%d/%m/%Y');</script></span></span>
                                     </td>
                                 </tr>
                             </table>
@@ -154,50 +169,72 @@
     </table>
 </div>
 <script type="text/javascript">
-            $(function(){
-                $.ajax({
-                    url:"/customerAccounts",
-                    type:"GET",
-                    async:true,
-                    success:function(data){
-                        $.each(data,function(i,item){
-                            if(item.keyId == ${assets.accountId}){
-                                $("#CustomerAccount").append("<option value=" + item.keyId + " selected='selected' >" + item.name + "</option>");
-                            }else {
-                                $("#CustomerAccount").append("<option value=" + item.keyId + " >" + item.name + "</option>");
-                            }
-                        })
-                    }
-                });
-                $.ajax({
-                    url:"/locations",
-                    type:"GET",
-                    async:true,
-                    success:function(data){
-                        $.each(data,function(i,item){
-                            if(item.keyId == ${assets.locationId}){
-                                $("#Location").append("<option value=" + item.keyId + " selected='selected' >" + item.name + "</option>");
-                            }else {
-                                $("#Location").append("<option value=" + item.keyId + " >" + item.name + "</option>");
-                            }
-                        })
+    $(function () {
+        $.ajax({
+            url: "/customerAccounts",
+            type: "GET",
+            async: true,
+            success: function (data) {
+                $.each(data, function (i, item) {
+                    if (item.keyId == ${assets.accountId}) {
+                        $("#CustomerAccount").append("<option value=" + item.keyId + " selected='selected' >" + item.name + "</option>");
+                    } else {
+                        $("#CustomerAccount").append("<option value=" + item.keyId + " >" + item.name + "</option>");
                     }
                 })
-                $.ajax({
-                    url:"/groups",
-                    type:"GET",
-                    async:true,
-                    success:function(data){
-                        $.each(data,function(i,item){
-                            if(item.keyId == ${assets.groupId}){
-                                $("#AssetGroup").append("<option value=" + item.keyId + " selected='selected' >" + item.name + "</option>");
-                            }else {
-                                $("#AssetGroup").append("<option value=" + item.keyId + " >" + item.name + "</option>");
-                            }
-                        })
+            }
+        });
+        $.ajax({
+            url: "/locations",
+            type: "GET",
+            async: true,
+            success: function (data) {
+                $.each(data, function (i, item) {
+                    if (item.keyId == ${assets.locationId}) {
+                        $("#Location").append("<option value=" + item.keyId + " selected='selected' >" + item.name + "</option>");
+                    } else {
+                        $("#Location").append("<option value=" + item.keyId + " >" + item.name + "</option>");
                     }
                 })
+            }
+        });
+        $.ajax({
+            url: "/groups",
+            type: "GET",
+            async: true,
+            success: function (data) {
+                $.each(data, function (i, item) {
+                    if (item.keyId == ${assets.groupId}) {
+                        $("#AssetGroup").append("<option value=" + item.keyId + " selected='selected' >" + item.name + "</option>");
+                    } else {
+                        $("#AssetGroup").append("<option value=" + item.keyId + " >" + item.name + "</option>");
+                    }
+                })
+            }
+        });
+        $("#Location").change(function () {
+            $("#locationId").val($("#Location").val());
+            $.ajax({
+                url: "/findChild/" + $("#Location").val(),
+                type: "GET",
+                async: true,
+                success: function (data) {
+                    if (data != null && data.length > 0) {
+                        var domStr = "<select id='subLocation' class='inputtext' name='subLocationId' onchange='setSelectVal(this)'><option value='0' selected='selected'>Select Location</option>";
+                        $.each(data, function (i, item) {
+                            domStr += "<option value='" + item.keyId + "' label='" + item.name + "'>" + item.name + "</option>";
+                        })
+                        domStr += "</select>";
+                        $("#locat").html(domStr);
+                    }
+                }
             })
+        });
+    });
+
+    function setSelectVal(obj) {
+        $("#locationId").val($(obj).val());
+    }
 </script>
 </body>
 </html>

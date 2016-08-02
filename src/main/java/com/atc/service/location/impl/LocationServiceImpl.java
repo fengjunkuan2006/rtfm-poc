@@ -19,4 +19,8 @@ public class LocationServiceImpl implements ILocationService {
     public List<Location> getLocations() {
         return locationDAO.getLocations();
     }
+
+    public List<Location> getLocationsById(Integer id, String org) {
+        return locationDAO.getLocationsById(id, org);
+    }
 }

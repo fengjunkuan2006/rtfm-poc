@@ -2,6 +2,12 @@ package com.atc.domains.asset.entity;
 
 
 import com.atc.common.model.BasePrimaryID;
+import com.atc.domains.customerAccount.entity.CustomerAccount;
+import com.atc.domains.location.entity.Location;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 import java.io.Serializable;

@@ -9,4 +9,6 @@ import java.util.List;
  */
 public interface ILocationService {
     List<Location> getLocations();
+
+    List<Location> getLocationsById(Integer id, String org);
 }
