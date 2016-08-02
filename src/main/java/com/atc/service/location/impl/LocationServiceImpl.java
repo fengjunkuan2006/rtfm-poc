@@ -5,7 +5,6 @@ import com.atc.domains.location.entity.Location;
 import com.atc.service.location.ILocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 /**

@@ -106,7 +106,7 @@
                                                     <option value='-1' label='Please select an account.'>Please select
                                                         an account.
                                                     </option>
-                                                </select></span></td>
+                                                </select></span> <span id="locat"></span></td>
                                             </tr>
                                             <tr>
                                                 <td class='spokesoft_srs_th'>Group (*)</td>
@@ -191,8 +191,36 @@
         },
     });
 
-    function submitInfo() {
+    $.ajax({
+        url:"/locations",
+        type:"GET",
+        async:true,
+        success:function(data){
+            $.each(data,function(i,item){
+                $("#Location").append("<option value=" + item.keyId + " >" + item.name + "</option>");
+            })
+        }
+    })
 
+    $("#Location").change(function () {
+        $.ajax({
+            url: "/findChild/" + $("#Location").val(),
+            type: "GET",
+            async: true,
+            success: function (data) {
+                if (data != null && data.length > 0) {
+                    var domStr = "<select id='subLocation' class='inputtext' name='subLocationId' onchange='setSelectVal(this)'><option value='0' selected='selected'>Select Location</option>";
+                    $.each(data, function (i, item) {
+                        domStr += "<option value='" + item.keyId + "' label='" + item.name + "'>" + item.name + "</option>";
+                    })
+                    domStr += "</select>";
+                    $("#locat").html(domStr);
+                }
+            }
+        })
+    });
+
+    function submitInfo() {
         if ($("#Reference").val() == "" || $("#Description").val() == "" || $("#Account").val() == "Please Choose" || $("#Location").val() == "Please Choose" || $("#Manufacturer").val() == "" || $("#SerialNumber").val() == "" || $("#AssetGroup").val() == "No group") {
             $("#message").text("Please select from available options AND empty field not allowed");
             setTimeout('$("#message").text("")', 2000);
@@ -210,7 +238,6 @@
                 async: false,
                 success: function (responseText) {
                     $("#info").text(responseText.message);
-
                     setTimeout('$("#message").text("")', 2000);
                 },
                 error: function () {

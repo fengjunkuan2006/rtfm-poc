@@ -2,12 +2,10 @@ package com.atc.domains.location.impl;
 
 import com.atc.domains.location.ILocationDAO;
 import com.atc.domains.location.entity.Location;
-import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
-
 import javax.annotation.Resource;
 import java.util.List;
 

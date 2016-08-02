@@ -103,7 +103,7 @@
                                                         id='LOCATION' value='1' name='LOCATION' type='hidden'/>
                                                 <select name="locationId" id="LOCATION_">
                                                     <option value="1">Please select an Location.</option>
-                                                </select></span>
+                                                </select></span><span id="locat"></span>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -156,6 +156,33 @@
                     });
                 }
             });
+        $.ajax({
+            url:"/locations",
+            type:"GET",
+            async:true,
+            success:function(data){
+                $.each(data,function(i,item){
+                    $("#LOCATION_").append("<option value=" + item.keyId + " >" + item.name + "</option>");
+                })
+            }
+        });
+        $("#LOCATION_").change(function () {
+            $.ajax({
+                url: "/findChild/" + $("#LOCATION_").val(),
+                type: "GET",
+                async: true,
+                success: function (data) {
+                    if (data != null && data.length > 0) {
+                        var domStr = "<select id='subLocation' class='inputtext' name='subLocationId' onchange='setSelectVal(this)'><option value='0' selected='selected'>Select Location</option>";
+                        $.each(data, function (i, item) {
+                            domStr += "<option value='" + item.keyId + "' label='" + item.name + "'>" + item.name + "</option>";
+                        })
+                        domStr += "</select>";
+                        $("#locat").html(domStr);
+                    }
+                }
+            })
+        });
     })
 </script>
 </body>

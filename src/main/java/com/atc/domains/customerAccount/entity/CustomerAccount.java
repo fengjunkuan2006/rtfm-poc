@@ -66,4 +66,12 @@ public class CustomerAccount implements Serializable {
     public void setNumber(String number) {
         this.number = number;
     }
+
+    public int getKeyId() {
+        return keyId;
+    }
+
+    public void setKeyId(int keyId) {
+        this.keyId = keyId;
+    }
 }

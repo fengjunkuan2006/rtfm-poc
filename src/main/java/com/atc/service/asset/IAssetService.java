@@ -38,5 +38,5 @@ public interface IAssetService {
      * @param id  Asset  keyId
      * @param assets
      */
-    void update(Integer id, Asset assets);
+    void update(Asset assets);
 }

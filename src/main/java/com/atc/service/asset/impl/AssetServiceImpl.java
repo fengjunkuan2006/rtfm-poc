@@ -34,7 +34,7 @@ public class AssetServiceImpl implements IAssetService {
         return assetDAO.get(id);
     }
 
-    public void update(Integer id, Asset assets) {
-        assetDAO.update(id, assets);
+    public void update(Asset assets) {
+        assetDAO.update(assets);
     }
 }

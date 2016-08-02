@@ -43,7 +43,9 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class='messagebox'><span id='message'>Please make changes and click 'Update'.</span></td>
+                        <td class='messagebox'>
+                            <div id="tipInfo"></div>
+                            <div id='message'>Please make changes and click 'Update'.</div></td>
                     </tr>
                     <tr>
                         <td>
@@ -59,7 +61,7 @@
                         <td>
                             <table id='Green_TabContentTable' cellspacing='0' class='TabTable' cellpadding='0'>
                                 <tr>
-                                    <td><span><span><form action='/asset/${assets.keyId}' method='post'
+                                    <td><span><span><form action=' method=' post'
                                                           enctype='multipart/form-data'>
                                         <style type='text/css'>.type-file-box {
                                             position: relative;
@@ -121,8 +123,6 @@
                                                 <td colspan='3' class='spokesoft_srs_tbody'><input
                                                         name='locationId' id="locationId" type="hidden"
                                                         value="0"><select id="Location" class='inputtext'>
-                                                    <option value='${assets.locationId}' label='Select an Account'
-                                                            selected="selected">${assets.locationId}</option>
                                                 </select>
                                                     <span id="locat"></span></td>
                                             </tr>
@@ -150,14 +150,15 @@
                                                 <td class='spokesoft_srs_th'>Group (*)</td>
                                                 <td class='spokesoft_srs_tbody'><select id='AssetGroup' name='groupId'
                                                                                         class='inputtext'>
-                                                    <option value='${assets.groupId}'
-                                                            label='No group'>${assets.groupId}</option>
+                                                    <%-- <option value='${assets.groupId}'
+                                                             label='No group'>${assets.groupId}</option>--%>
                                                 </select></td>
                                             </tr>
                                         </table>
                                         <input id='UpdateButton' value='Update' class='pure-button' name='UpdateButton'
-                                               type='submit'/></form><script language='Javascript'>
-                                        cal.manageFields('LastServiced_trigger', 'LastServiced', '%d/%m/%Y');</script></span></span>
+                                               type='button'/></form>
+                                        <script language='Javascript'>
+                                            cal.manageFields('LastServiced_trigger', 'LastServiced', '%d/%m/%Y');</script></span></span>
                                     </td>
                                 </tr>
                             </table>
@@ -177,9 +178,9 @@
             success: function (data) {
                 $.each(data, function (i, item) {
                     if (item.keyId == ${assets.accountId}) {
-                        $("#CustomerAccount").append("<option value=" + item.keyId + " selected='selected' >" + item.name + "</option>");
+                        $("#CustomerAccount").append("<option value='" + item.keyId + "' selected='selected' >" + item.name + "</option>");
                     } else {
-                        $("#CustomerAccount").append("<option value=" + item.keyId + " >" + item.name + "</option>");
+                        $("#CustomerAccount").append("<option value='" + item.keyId + "' >" + item.name + "</option>");
                     }
                 })
             }
@@ -212,6 +213,7 @@
                 })
             }
         });
+        var flag = false;
         $("#Location").change(function () {
             $("#locationId").val($("#Location").val());
             $.ajax({
@@ -220,6 +222,7 @@
                 async: true,
                 success: function (data) {
                     if (data != null && data.length > 0) {
+                        flag = true;
                         var domStr = "<select id='subLocation' class='inputtext' name='subLocationId' onchange='setSelectVal(this)'><option value='0' selected='selected'>Select Location</option>";
                         $.each(data, function (i, item) {
                             domStr += "<option value='" + item.keyId + "' label='" + item.name + "'>" + item.name + "</option>";
@@ -230,11 +233,43 @@
                 }
             })
         });
-    });
 
-    function setSelectVal(obj) {
-        $("#locationId").val($(obj).val());
-    }
+        function setSelectVal(obj) {
+            $("#locationId").val($(obj).val());
+        }
+
+        $("#UpdateButton").click(function () {
+            var locationId = 0;
+            if (flag) {
+                locationId = $("#subLocation").val();
+            } else {
+                locationId = $("#Location").val();
+            }
+            var jsonData = {
+                "keyId":${assets.keyId},
+                "assetReference": $("#Reference").val(),
+                "description": $("#Description").val(),
+                "accountId": $("#CustomerAccount").val(),
+                "locationId": locationId,
+                "manufacturer": $("#Manufacturer").val(),
+                "serialNumber": $("#SerialNumber").val(),
+                "groupId": $("#AssetGroup").val()
+            };
+            $.ajax({
+                url: "/updateAsset",
+                data: JSON.stringify(jsonData),
+                type: "POST",
+                dataType: "json",
+                contentType: "application/json",
+                async: false,
+                success: function (data) {
+                    if(data.code == 0) {
+                        $("#tipInfo").text(data.message);
+                    }
+                }
+            });
+        });
+    });
 </script>
 </body>
 </html>

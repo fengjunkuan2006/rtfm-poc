@@ -66,8 +66,8 @@ public class AssetDAOImpl implements IAssetDAO {
         return (Asset) criteria.list().get(0);
     }
 
-    public void update(Integer id, Asset assets) {
-        String sql = "UPDATE assets SET ASSET_REFERENCE='" + assets.getAssetReference() + "',DESCRIPTION='" + assets.getDescription() + "',ACCOUNT_ID='" + assets.getAccountId() + "',LOCATION_ID='" + assets.getLocationId() + "',MANUFACTURER='" + assets.getManufacturer() + "',SERIAL_NUMBER='" + assets.getSerialNumber() + "',GROUP_ID='" + assets.getGroupId() + "' WHERE KEY_ID='" + id + "'";
+    public void update(Asset assets) {
+        String sql = "UPDATE assets SET ASSET_REFERENCE='" + assets.getAssetReference() + "',DESCRIPTION='" + assets.getDescription() + "',ACCOUNT_ID='" + assets.getAccountId() + "',LOCATION_ID='" + assets.getLocationId() + "',MANUFACTURER='" + assets.getManufacturer() + "',SERIAL_NUMBER='" + assets.getSerialNumber() + "',GROUP_ID='" + assets.getGroupId() + "' WHERE KEY_ID='" + assets.getKeyId() + "'";
         SQLQuery query = getSession().createSQLQuery(sql);
         query.executeUpdate();
     }

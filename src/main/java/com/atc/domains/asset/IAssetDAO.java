@@ -33,5 +33,5 @@ public interface IAssetDAO {
      * @param id Asset KetId
      * @param assets
      */
-    void update(Integer id, Asset assets);
+    void update(Asset assets);
 }
