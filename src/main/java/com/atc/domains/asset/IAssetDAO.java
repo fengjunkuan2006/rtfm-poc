@@ -14,24 +14,24 @@ public interface IAssetDAO {
     /**
      * Find Asset List
      *
-     * @param assets
+     * @param asset
      * @return List<Asset>
      */
-    List<Asset> findAssets(Asset assets);
+    List<Asset> findAssets(Asset asset);
 
     /**
      * Get Asset By AssetId
      *
-     * @param id Asset keyId
-     * @return Asset
+     * @param id
+     * @param org
+     * @return
      */
-    Asset get(Integer id);
+    Asset get(Integer id, String org);
 
     /**
      * Update Asset By keyId
      *
-     * @param id Asset KetId
-     * @param assets
+     * @param asset
      */
-    void update(Asset assets);
+    void update(Asset asset);
 }

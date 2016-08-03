@@ -19,24 +19,24 @@ public interface IAssetService {
     /**
      * Get Assetr List
      *
-     * @param assets
+     * @param asset
      * @return List<Asset>
      */
-    List<Asset> findAssets(Asset assets);
+    List<Asset> findAssets(Asset asset);
 
     /**
      * Get Asset By AssetId
      *
-     * @param id Asset  keyId
-     * @return Asset
+     * @param id
+     * @param org
+     * @return
      */
-    Asset get(Integer id);
+    Asset get(Integer id, String org);
 
     /**
-     * Update Asset By AssetId
+     * Update Asset By Id
      *
-     * @param id  Asset  keyId
-     * @param assets
+     * @param asset
      */
-    void update(Asset assets);
+    void update(Asset asset);
 }
