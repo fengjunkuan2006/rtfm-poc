@@ -21,8 +21,9 @@ public class LocationDAOImpl implements ILocationDAO {
         return sessionFactory.openSession();
     }
 
-    public List<Location> getLocations() {
+    public List<Location> getLocations(String org) {
         org.hibernate.Criteria criteria = getSession().createCriteria(Location.class);
+        criteria.add(Restrictions.eq("org", org));
         List<Location> list = criteria.list();
         return list;
     }

@@ -14,7 +14,7 @@ public interface ILocationDAO {
      *
      * @return List<Location>
      */
-    List<Location> getLocations();
+    List<Location> getLocations(String org);
 
 
     /**
