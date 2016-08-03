@@ -116,7 +116,7 @@
                                                 </select><input id='AddAccountButton' value='Add Account'
                                                                 class='pure-button' name='AddAccountButton'
                                                                 onclick="window.location.href='/customerAccount/addPage'"
-                                                                type='submit'/></td>
+                                                                type='button'/></td>
                                             </tr>
                                             <tr>
                                                 <td class='spokesoft_srs_th'>Location (*)</td>
