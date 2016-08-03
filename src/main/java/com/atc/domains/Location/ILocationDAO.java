@@ -12,9 +12,10 @@ public interface ILocationDAO {
     /**
      * Get List<Location>
      *
+     * @param org ORG
      * @return List<Location>
      */
-    List<Location> getLocations();
+    List<Location> getLocations(String org);
 
 
     /**
