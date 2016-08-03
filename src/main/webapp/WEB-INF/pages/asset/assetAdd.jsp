@@ -103,9 +103,7 @@
                                                 <td colspan='3' class='spokesoft_srs_tbody'><span><select id='Location'
                                                                                                           name='Location'
                                                                                                           class='inputtext'>
-                                                    <option value='-1' label='Please select a account.'>Please select
-                                                        a account.
-                                                    </option>
+                                                    <option value='-1' label='Please select a account.'>Please select an account.</option>
                                                 </select></span> <span id="locat"></span></td>
                                             </tr>
                                             <tr>
@@ -120,7 +118,7 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class='spokesoft_srs_th'>Manufacturer</td>
+                                                <td class='spokesoft_srs_th'>Manufacturer (*)</td>
                                                 <td colspan="3" class='spokesoft_srs_tbody'><input class='inputtext'
                                                                                                    id='Manufacturer'
                                                                                                    name='Manufacturer'
@@ -129,7 +127,7 @@
                                                                                                    type='text'/></td>
                                             </tr>
                                             <tr>
-                                                <td class='spokesoft_srs_th'>Serial Number</td>
+                                                <td class='spokesoft_srs_th'>Serial Number (*)</td>
                                                 <td colspan="3" class='spokesoft_srs_tbody'><input class='inputtext'
                                                                                                    id='SerialNumber'
                                                                                                    name='SerialNumber'

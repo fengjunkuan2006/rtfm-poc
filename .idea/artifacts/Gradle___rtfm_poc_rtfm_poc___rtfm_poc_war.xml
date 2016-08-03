@@ -1,10 +1,10 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="Gradle : CustomerPortal:rtfm-poc : rtfm-poc.war (exploded)">
-    <output-path>$PROJECT_DIR$/build/classes/artifacts/rtfm-poc/exploded/rtfm-poc.war</output-path>
+  <artifact type="war" name="Gradle : rtfm-poc:rtfm-poc : rtfm-poc.war">
+    <output-path>$PROJECT_DIR$/build/classes/artifacts/rtfm-poc</output-path>
     <properties id="gradle-properties">
       <options external-project-path="$PROJECT_DIR$" />
     </properties>
-    <root id="root">
+    <root id="archive" name="rtfm-poc.war">
       <element id="javaee-facet-resources" facet="rtfm-poc/web/Web Gradle : rtfm-poc.war" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">

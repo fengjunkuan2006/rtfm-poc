@@ -81,7 +81,7 @@
                                                     <td class='spokesoft_srs_clean_tbody'><a id='linkAsset1'
                                                                                              href='/asset/${asset.keyId}'
                                                                                              class='documentlink'
-                                                                                             name='Asset KC-EML-001'>${asset.assetReference}</a>
+                                                                                          name='Asset KC-EML-001'>${asset.assetReference}</a>
                                                     </td>
                                                     <td class='spokesoft_srs_clean_tbody'>${asset.description}</td>
                                                     <td class='spokesoft_srs_clean_tbody'>${asset.customerAccount.name}</td>
