@@ -15,8 +15,8 @@ public class LocationServiceImpl implements ILocationService {
     @Autowired
     ILocationDAO locationDAO;
 
-    public List<Location> getLocations() {
-        return locationDAO.getLocations();
+    public List<Location> getLocations(String org) {
+        return locationDAO.getLocations(org);
     }
 
     public List<Location> getLocationsById(Integer id, String org) {

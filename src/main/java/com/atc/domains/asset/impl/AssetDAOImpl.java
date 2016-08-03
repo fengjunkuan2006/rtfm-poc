@@ -77,10 +77,5 @@ public class AssetDAOImpl implements IAssetDAO {
         session.update(asset);
         tx.commit();
         session.close();
-        /*
-        String sql = "UPDATE assets SET ASSET_REFERENCE='" + asset.getAssetReference() + "',DESCRIPTION='" + asset.getDescription() + "',ACCOUNT_ID='" + asset.getAccountId() + "',LOCATION_ID='" + asset.getLocationId() + "',MANUFACTURER='" + asset.getManufacturer() + "',SERIAL_NUMBER='" + asset.getSerialNumber() + "',GROUP_ID='" + asset.getGroupId() + "' WHERE KEY_ID='" + asset.getKeyId() + "'";
-        SQLQuery query = getSession().createSQLQuery(sql);
-        query.executeUpdate();
-        */
     }
 }

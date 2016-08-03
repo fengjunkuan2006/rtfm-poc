@@ -22,9 +22,10 @@ public class GroupDAOImpl implements IGroupDAO {
         return sessionFactory.openSession();
     }
 
-    public List<Group> selectGroup() {
+    public List<Group> selectGroup(String org) {
         org.hibernate.Criteria criteria = getSession().createCriteria(Group.class);
-        criteria.add(Restrictions.eq("org", "AWSIE"));
+        criteria.add(Restrictions.eq("org", org));
+
         List groups = criteria.list();
         return groups;
     }

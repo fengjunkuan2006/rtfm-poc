@@ -20,7 +20,7 @@ public class CustomerAccountServiceImpl implements ICustomerAccountService {
         return customerAccountDAO.insertAccount(customerAccount);
     }
 
-    public List<CustomerAccount> getAccounts() {
-        return customerAccountDAO.getAccounts();
+    public List<CustomerAccount> getAccounts(String org) {
+        return customerAccountDAO.getAccounts(org);
     }
 }

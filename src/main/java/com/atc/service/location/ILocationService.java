@@ -12,9 +12,10 @@ public interface ILocationService {
     /**
      * Get Location List
      *
+     * @param org ORG
      * @return List<Location>
      */
-    List<Location> getLocations();
+    List<Location> getLocations(String org);
 
 
     /**

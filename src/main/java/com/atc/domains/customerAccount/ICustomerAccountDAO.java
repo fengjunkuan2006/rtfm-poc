@@ -16,8 +16,10 @@ public interface ICustomerAccountDAO {
     int insertAccount(CustomerAccount customerAccount);
 
     /**
-     * CustomerAccountList
+     * Get customer account list
+     *
+     * @param org
      * @return
      */
-    List<CustomerAccount> getAccounts();
+    List<CustomerAccount> getAccounts(String org);
 }

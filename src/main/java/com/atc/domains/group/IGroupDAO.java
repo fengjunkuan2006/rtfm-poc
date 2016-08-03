@@ -9,8 +9,10 @@ import java.util.List;
  */
 public interface IGroupDAO {
     /**
-     * selectGroup
+     * Select group
+     *
+     * @param org
      * @return
      */
-    public List<Group> selectGroup();
+    public List<Group> selectGroup(String org);
 }

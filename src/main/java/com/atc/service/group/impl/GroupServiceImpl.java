@@ -16,7 +16,7 @@ public class GroupServiceImpl implements IGroupService {
     @Autowired
     IGroupDAO groupDAO;
 
-    public List<Group> getGroupList() {
-        return groupDAO.selectGroup();
+    public List<Group> getGroupList(String org) {
+        return groupDAO.selectGroup(org);
     }
 }
