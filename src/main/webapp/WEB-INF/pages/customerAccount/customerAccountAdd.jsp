@@ -61,12 +61,13 @@
                                             </tr>
                                             <tr>
                                                 <td class='spokesoft_srs_th'>Location</td>
-                                                <td class='spokesoft_srs_tbody'><span><input id='location' value='-1'
+                                                <td class='spokesoft_srs_tbody'><span><input  value='-1'
                                                                                              name='location'
                                                                                              type='hidden'/>
                                                     <select id="Location" class='inputtext'>
+                                                        <option value='-1' label='Please select a account.'>Please select a account </option>
                                                     </select><span id="locat"></span>
-                                              </td>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td class='spokesoft_srs_th'>Active</td>
@@ -148,7 +149,7 @@
             success: function (responseText) {
                 $("#message").text(responseText.message);
 
-                setTimeout('$("#message").text("")', 2000);
+
             },
             error: function () {
                 alert("Error");

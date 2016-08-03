@@ -103,8 +103,8 @@
                                                 <td colspan='3' class='spokesoft_srs_tbody'><span><select id='Location'
                                                                                                           name='Location'
                                                                                                           class='inputtext'>
-                                                    <option value='-1' label='Please select an account.'>Please select
-                                                        an account.
+                                                    <option value='-1' label='Please select a account.'>Please select
+                                                        a account.
                                                     </option>
                                                 </select></span> <span id="locat"></span></td>
                                             </tr>
@@ -223,7 +223,7 @@
     function submitInfo() {
         if ($("#Reference").val() == "" || $("#Description").val() == "" || $("#Account").val() == "Please Choose" || $("#Location").val() == "Please Choose" || $("#Manufacturer").val() == "" || $("#SerialNumber").val() == "" || $("#AssetGroup").val() == "No group") {
             $("#message").text("Please select from available options AND empty field not allowed");
-            setTimeout('$("#message").text("")', 2000);
+
         } else {
             $.ajax({
                 url: "/asset",
@@ -237,8 +237,8 @@
                 contentType: "application/json",
                 async: false,
                 success: function (responseText) {
-                    $("#info").text(responseText.message);
-                    setTimeout('$("#message").text("")', 2000);
+                    $("#message").text(responseText.message);
+
                 },
                 error: function () {
                     alert("Error");

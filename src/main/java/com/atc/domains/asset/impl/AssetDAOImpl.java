@@ -2,6 +2,7 @@ package com.atc.domains.asset.impl;
 
 import com.atc.domains.asset.IAssetDAO;
 import com.atc.domains.asset.entity.Asset;
+import javafx.application.Application;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -57,6 +58,7 @@ public class AssetDAOImpl implements IAssetDAO {
             criteria.add(Restrictions.eq("groupId", assets.getGroupId()));
         }
         List<Asset> list = criteria.list();
+
         return list;
     }
 

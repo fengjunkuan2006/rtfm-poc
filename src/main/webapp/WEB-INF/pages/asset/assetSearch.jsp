@@ -90,7 +90,7 @@
                                                 <td class='spokesoft_srs_tbody'><select id='CustomerAccountId'
                                                                                         name='accountId'
                                                                                         class='inputtext'>
-                                                    <option selected="selected" value="1" label="All Customer Accounts">
+                                                    <option selected="selected" value="0" label="All Customer Accounts">
                                                         All Customer Accounts
                                                     </option>
                                                 </select></td>
@@ -102,7 +102,7 @@
                                                                                              type='hidden'/><input
                                                         id='LOCATION' value='1' name='LOCATION' type='hidden'/>
                                                 <select name="locationId" id="LOCATION_">
-                                                    <option value="1">Please select an Location.</option>
+                                                    <option value="0">Please select an Location.</option>
                                                 </select></span><span id="locat"></span>
                                                 </td>
                                             </tr>
@@ -111,7 +111,7 @@
                                                 <td class='spokesoft_srs_tbody'><select id='AssetGroup'
                                                                                         name='groupId'
                                                                                         class='inputtext'>
-                                                    <option value="112" label="No group">No group</option>
+                                                    <option value="0" label="No group">No group</option>
                                                 </select></td>
                                             </tr>
                                         </table>
