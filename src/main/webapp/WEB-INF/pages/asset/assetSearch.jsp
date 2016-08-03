@@ -102,7 +102,7 @@
                                                                                              type='hidden'/><input
                                                         id='LOCATION' value='1' name='LOCATION' type='hidden'/>
                                                 <select name="locationId" id="LOCATION_">
-                                                    <option value="0">Please select an Location.</option>
+                                                    <option value="0">Please select an account.</option>
                                                 </select></span><span id="locat"></span>
                                                 </td>
                                             </tr>
