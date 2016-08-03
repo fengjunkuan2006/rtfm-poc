@@ -33,16 +33,16 @@ public class Asset implements Serializable {
     private Integer locationId;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumns({
-            @JoinColumn(name = "ORG", insertable = false, updatable = false),
-            @JoinColumn(name = "KEY_ID", insertable = false, updatable = false)
+            @JoinColumn(name = "ORG", referencedColumnName = "ORG", insertable = false, updatable = false),
+            @JoinColumn(name = "LOCATION_ID", referencedColumnName = "KEY_ID", insertable = false, updatable = false)
     })
     private Location location;
     @Column(name = "ACCOUNT_ID")
     private Integer accountId;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumns({
-            @JoinColumn(name = "ORG", insertable = false, updatable = false),
-            @JoinColumn(name = "KEY_ID", insertable = false, updatable = false)
+            @JoinColumn(name = "ORG", referencedColumnName = "ORG", insertable = false, updatable = false),
+            @JoinColumn(name = "ACCOUNT_ID", referencedColumnName = "KEY_ID", insertable = false, updatable = false)
     })
     private CustomerAccount customerAccount;
     @Column(name = "GROUP_ID")
