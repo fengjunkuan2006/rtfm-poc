@@ -76,7 +76,7 @@
 
 
                                             </tr>
-                                            <c:forEach items="${sessionScope.list}" var="asset">
+                                            <c:forEach items="${assets}" var="asset">
                                                 <tr>
                                                     <td class='spokesoft_srs_clean_tbody'><a id='linkAsset1'
                                                                                              href='/asset/${asset.keyId}'
@@ -84,8 +84,8 @@
                                                                                              name='Asset KC-EML-001'>${asset.assetReference}</a>
                                                     </td>
                                                     <td class='spokesoft_srs_clean_tbody'>${asset.description}</td>
-                                                    <td class='spokesoft_srs_clean_tbody'>${asset.accountId}</td>
-                                                    <td class='spokesoft_srs_clean_tbody'>${asset.locationId}</td>
+                                                    <td class='spokesoft_srs_clean_tbody'>${asset.customerAccount.name}</td>
+                                                    <td class='spokesoft_srs_clean_tbody'>${asset.location.name}</td>
                                                 </tr>
                                             </c:forEach>
                                         </table>

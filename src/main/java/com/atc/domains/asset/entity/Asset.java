@@ -4,10 +4,6 @@ package com.atc.domains.asset.entity;
 import com.atc.common.model.BasePrimaryID;
 import com.atc.domains.customerAccount.entity.CustomerAccount;
 import com.atc.domains.location.entity.Location;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -35,8 +31,20 @@ public class Asset implements Serializable {
     private String serialNumber;
     @Column(name = "LOCATION_ID")
     private Integer locationId;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumns({
+            @JoinColumn(name = "ORG", insertable = false, updatable = false),
+            @JoinColumn(name = "KEY_ID", insertable = false, updatable = false)
+    })
+    private Location location;
     @Column(name = "ACCOUNT_ID")
     private Integer accountId;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumns({
+            @JoinColumn(name = "ORG", insertable = false, updatable = false),
+            @JoinColumn(name = "KEY_ID", insertable = false, updatable = false)
+    })
+    private CustomerAccount customerAccount;
     @Column(name = "GROUP_ID")
     private Integer groupId;
     @Column(name = "SERVICE_PROVIDER")
@@ -123,6 +131,22 @@ public class Asset implements Serializable {
 
     public void setServiceProvider(String serviceProvider) {
         this.serviceProvider = serviceProvider;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public CustomerAccount getCustomerAccount() {
+        return customerAccount;
+    }
+
+    public void setCustomerAccount(CustomerAccount customerAccount) {
+        this.customerAccount = customerAccount;
     }
 
     @Override

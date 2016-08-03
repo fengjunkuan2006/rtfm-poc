@@ -4,6 +4,7 @@ package com.atc.domains.location.entity;
 import com.atc.common.model.BasePrimaryID;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by Darren.zhang on 8/1/2016.
@@ -11,7 +12,7 @@ import javax.persistence.*;
 @Entity
 @IdClass(BasePrimaryID.class)
 @Table(name = "treenodes")
-public class Location {
+public class Location implements Serializable {
     @Id
     @Column(name = "ORG")
     private String org;

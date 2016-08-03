@@ -61,7 +61,7 @@ public class AssetDAOImpl implements IAssetDAO {
         }
         List<Asset> list = criteria.list();
 
-        return list;
+        return list.subList(list.size() - 100, list.size()-1);
     }
 
     public Asset get(Integer id, String org) {
