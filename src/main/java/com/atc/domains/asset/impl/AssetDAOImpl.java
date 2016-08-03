@@ -5,6 +5,7 @@ import com.atc.domains.asset.entity.Asset;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 
@@ -24,51 +25,60 @@ public class AssetDAOImpl implements IAssetDAO {
     }
 
     public int insertAsset(Asset asset) {
-        String sql = "INSERT INTO assets (org, key_id, asset_reference, description, group_id, account_id, location_id, manufacturer, serial_number) SELECT 'AWSIE', IFNULL(MAX(key_id), 0) + 1 AS keyId, '" + asset.getAssetReference() + "', '" + asset.getDescription() + "','" + asset.getGroupId() + "','" + asset.getAccountId() + "','" + asset.getLocationId() + "','" + asset.getManufacturer() + "','" + asset.getSerialNumber() + "' FROM assets WHERE org='AWSIE'";
+        String sql = "INSERT INTO assets (org, key_id, asset_reference, description, group_id, account_id, location_id, manufacturer, serial_number) SELECT org, IFNULL(MAX(key_id), 0) + 1 AS keyId, '" + asset.getAssetReference() + "', '" + asset.getDescription() + "','" + asset.getGroupId() + "','" + asset.getAccountId() + "','" + asset.getLocationId() + "','" + asset.getManufacturer() + "','" + asset.getSerialNumber() + "' FROM assets WHERE org='" + asset.getOrg() + "'";
         SQLQuery query = getSession().createSQLQuery(sql);
         return query.executeUpdate();
     }
 
-    public List<Asset> findAssets(Asset assets) {
+    public List<Asset> findAssets(Asset asset) {
         org.hibernate.Criteria criteria = getSession().createCriteria(Asset.class);
 
-        if (!"".equals(assets.getAssetReference().trim())) {
-            criteria.add(Restrictions.eq("assetReference", assets.getAssetReference().trim()));
+        criteria.add(Restrictions.eq("org", asset.getOrg()));
+        if (!"".equals(asset.getAssetReference().trim())) {
+            criteria.add(Restrictions.eq("assetReference", asset.getAssetReference().trim()));
         }
-        if (!"".equals(assets.getDescription().trim())) {
-            criteria.add(Restrictions.eq("description", assets.getDescription().trim()));
+        if (!"".equals(asset.getDescription().trim())) {
+            criteria.add(Restrictions.eq("description", asset.getDescription().trim()));
         }
-        if (!"".equals(assets.getManufacturer().trim())) {
-            criteria.add(Restrictions.eq("manufacturer", assets.getManufacturer().trim()));
+        if (!"".equals(asset.getManufacturer().trim())) {
+            criteria.add(Restrictions.eq("manufacturer", asset.getManufacturer().trim()));
         }
-        if (!"".equals(assets.getSerialNumber().trim())) {
-            criteria.add(Restrictions.eq("serialNumber", assets.getSerialNumber().trim()));
+        if (!"".equals(asset.getSerialNumber().trim())) {
+            criteria.add(Restrictions.eq("serialNumber", asset.getSerialNumber().trim()));
         }
-        if (!"".equals(assets.getServiceProvider().trim())) {
-            criteria.add(Restrictions.eq("serviceProvider", assets.getServiceProvider().trim()));
+        if (!"".equals(asset.getServiceProvider().trim())) {
+            criteria.add(Restrictions.eq("serviceProvider", asset.getServiceProvider().trim()));
         }
-        if (assets.getAccountId() != 0) {
-            criteria.add(Restrictions.eq("accountId", assets.getAccountId()));
+        if (asset.getAccountId() != 0) {
+            criteria.add(Restrictions.eq("accountId", asset.getAccountId()));
         }
-        if (assets.getLocationId() != 0) {
-            criteria.add(Restrictions.eq("locationId", assets.getLocationId()));
+        if (asset.getLocationId() != 0) {
+            criteria.add(Restrictions.eq("locationId", asset.getLocationId()));
         }
-        if (assets.getGroupId() != 0) {
-            criteria.add(Restrictions.eq("groupId", assets.getGroupId()));
+        if (asset.getGroupId() != 0) {
+            criteria.add(Restrictions.eq("groupId", asset.getGroupId()));
         }
         List<Asset> list = criteria.list();
         return list;
     }
 
-    public Asset get(Integer id) {
+    public Asset get(Integer id, String org) {
         org.hibernate.Criteria criteria = getSession().createCriteria(Asset.class);
+        criteria.add(Restrictions.eq("org", org));
         criteria.add(Restrictions.eq("keyId", id));
         return (Asset) criteria.list().get(0);
     }
 
-    public void update(Asset assets) {
-        String sql = "UPDATE assets SET ASSET_REFERENCE='" + assets.getAssetReference() + "',DESCRIPTION='" + assets.getDescription() + "',ACCOUNT_ID='" + assets.getAccountId() + "',LOCATION_ID='" + assets.getLocationId() + "',MANUFACTURER='" + assets.getManufacturer() + "',SERIAL_NUMBER='" + assets.getSerialNumber() + "',GROUP_ID='" + assets.getGroupId() + "' WHERE KEY_ID='" + assets.getKeyId() + "'";
+    public void update(Asset asset) {
+        Session session = getSession();
+        Transaction tx = session.beginTransaction();
+        session.update(asset);
+        tx.commit();
+        session.close();
+        /*
+        String sql = "UPDATE assets SET ASSET_REFERENCE='" + asset.getAssetReference() + "',DESCRIPTION='" + asset.getDescription() + "',ACCOUNT_ID='" + asset.getAccountId() + "',LOCATION_ID='" + asset.getLocationId() + "',MANUFACTURER='" + asset.getManufacturer() + "',SERIAL_NUMBER='" + asset.getSerialNumber() + "',GROUP_ID='" + asset.getGroupId() + "' WHERE KEY_ID='" + asset.getKeyId() + "'";
         SQLQuery query = getSession().createSQLQuery(sql);
         query.executeUpdate();
+        */
     }
 }

@@ -26,15 +26,15 @@ public class AssetServiceImpl implements IAssetService {
         return result;
     }
 
-    public List<Asset> findAssets(Asset assets) {
-        return assetDAO.findAssets(assets);
+    public List<Asset> findAssets(Asset asset) {
+        return assetDAO.findAssets(asset);
     }
 
-    public Asset get(Integer id) {
-        return assetDAO.get(id);
+    public Asset get(Integer id, String org) {
+        return assetDAO.get(id, org);
     }
 
-    public void update(Asset assets) {
-        assetDAO.update(assets);
+    public void update(Asset asset) {
+        assetDAO.update(asset);
     }
 }
