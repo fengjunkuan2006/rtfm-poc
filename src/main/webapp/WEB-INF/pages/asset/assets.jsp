@@ -76,7 +76,7 @@
 
 
                                             </tr>
-                                            <c:forEach items="${assets}" var="asset">
+                                            <c:forEach items="${list}" var="asset">
                                                 <tr>
                                                     <td class='spokesoft_srs_clean_tbody'><a id='linkAsset1'
                                                                                              href='/asset/${asset.keyId}'
