@@ -65,7 +65,7 @@
                                                                                              name='location'
                                                                                              type='hidden'/>
                                                     <select id="Location" class='inputtext'>
-                                                        <option value='-1' label='Please select a account.'>Please select a account </option>
+                                                        <option value='-1' label='Please select a account.'>Please select an account. </option>
                                                     </select><span id="locat"></span>
                                                 </td>
                                             </tr>
