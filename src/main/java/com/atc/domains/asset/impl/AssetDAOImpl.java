@@ -1,12 +1,16 @@
 package com.atc.domains.asset.impl;
 
+import com.atc.common.model.asset.PagedListCondition;
+import com.atc.common.model.asset.PagedListResult;
 import com.atc.domains.asset.IAssetDAO;
 import com.atc.domains.asset.entity.Asset;
 import javafx.application.Application;
+import org.apache.commons.lang3.StringUtils;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 
@@ -31,37 +35,47 @@ public class AssetDAOImpl implements IAssetDAO {
         return query.executeUpdate();
     }
 
-    public List<Asset> findAssets(Asset asset) {
+    public PagedListResult findAssets(PagedListCondition condition) {
         org.hibernate.Criteria criteria = getSession().createCriteria(Asset.class);
 
-        criteria.add(Restrictions.eq("org", asset.getOrg()));
-        if (!"".equals(asset.getAssetReference().trim())) {
-            criteria.add(Restrictions.eq("assetReference", asset.getAssetReference().trim()));
+        criteria.add(Restrictions.eq("org", condition.getOrg()));
+        if (StringUtils.isNotEmpty(condition.getAssetReference())) {
+            criteria.add(Restrictions.eq("assetReference", condition.getAssetReference().trim()));
         }
-        if (!"".equals(asset.getDescription().trim())) {
-            criteria.add(Restrictions.eq("description", asset.getDescription().trim()));
+        if (StringUtils.isNotEmpty(condition.getDescription())) {
+            criteria.add(Restrictions.eq("description", condition.getDescription().trim()));
         }
-        if (!"".equals(asset.getManufacturer().trim())) {
-            criteria.add(Restrictions.eq("manufacturer", asset.getManufacturer().trim()));
+        if (StringUtils.isNotEmpty(condition.getManufacturer())) {
+            criteria.add(Restrictions.eq("manufacturer", condition.getManufacturer().trim()));
         }
-        if (!"".equals(asset.getSerialNumber().trim())) {
-            criteria.add(Restrictions.eq("serialNumber", asset.getSerialNumber().trim()));
+        if (StringUtils.isNotEmpty(condition.getSerialNumber())) {
+            criteria.add(Restrictions.eq("serialNumber", condition.getSerialNumber().trim()));
         }
-        if (!"".equals(asset.getServiceProvider().trim())) {
-            criteria.add(Restrictions.eq("serviceProvider", asset.getServiceProvider().trim()));
+        if (StringUtils.isNotEmpty(condition.getServiceProvider())) {
+            criteria.add(Restrictions.eq("serviceProvider", condition.getServiceProvider().trim()));
         }
-        if (asset.getAccountId() != 0) {
-            criteria.add(Restrictions.eq("accountId", asset.getAccountId()));
+        if (condition.getAccountId() != null && condition.getAccountId() != 0) {
+            criteria.add(Restrictions.eq("accountId", condition.getAccountId()));
         }
-        if (asset.getLocationId() != 0) {
-            criteria.add(Restrictions.eq("locationId", asset.getLocationId()));
+        if (condition.getLocationId() != null && condition.getLocationId() != 0) {
+            criteria.add(Restrictions.eq("locationId", condition.getLocationId()));
         }
-        if (asset.getGroupId() != 0) {
-            criteria.add(Restrictions.eq("groupId", asset.getGroupId()));
+        if (condition.getGroupId() != null && condition.getGroupId() != 0) {
+            criteria.add(Restrictions.eq("groupId", condition.getGroupId()));
         }
-        List<Asset> list = criteria.list();
+        //Total record number
+        Long totalCount = (Long)criteria.setProjection(Projections.rowCount()).uniqueResult();
+        criteria.setProjection( null );
 
-        return list.subList(0, list.size() > 100 ? 100 : list.size());
+        criteria.setFirstResult(condition.getiDisplayStart());
+        criteria.setMaxResults(condition.getiDisplayLength());
+
+        PagedListResult result = new PagedListResult();
+        result.setiTotalRecords(totalCount);
+        result.setiTotalDisplayRecords(totalCount);
+        result.setAaData(criteria.list());
+
+        return result;
     }
 
     public Asset get(Integer id, String org) {

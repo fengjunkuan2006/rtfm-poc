@@ -1,5 +1,7 @@
 package com.atc.service.asset;
 
+import com.atc.common.model.asset.PagedListCondition;
+import com.atc.common.model.asset.PagedListResult;
 import com.atc.domains.asset.entity.Asset;
 
 import java.util.List;
@@ -19,10 +21,10 @@ public interface IAssetService {
     /**
      * Get Assetr List
      *
-     * @param asset
-     * @return List<Asset>
+     * @param condition
+     * @return PagedListResult
      */
-    List<Asset> findAssets(Asset asset);
+    PagedListResult findAssets(PagedListCondition condition);
 
     /**
      * Get Asset By AssetId

@@ -1,5 +1,7 @@
 package com.atc.domains.asset;
 
+import com.atc.common.model.asset.PagedListCondition;
+import com.atc.common.model.asset.PagedListResult;
 import com.atc.domains.asset.entity.Asset;
 
 import java.util.List;
@@ -14,10 +16,10 @@ public interface IAssetDAO {
     /**
      * Find Asset List
      *
-     * @param asset
-     * @return List<Asset>
+     * @param condition
+     * @return PagedListResult
      */
-    List<Asset> findAssets(Asset asset);
+    PagedListResult findAssets(PagedListCondition condition);
 
     /**
      * Get Asset By AssetId

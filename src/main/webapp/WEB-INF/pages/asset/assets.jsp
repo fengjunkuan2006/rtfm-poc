@@ -11,6 +11,8 @@
 <html xmlns='http://www.w3.org/1999/xhtml'>
 <head><title>RealTime /FM Ticket And Task Management</title>
     <jsp:include flush="true" page="/WEB-INF/pages/common.jsp"/>
+    <link href="/staticmedia/components/datatable/css/jquery.dataTables_themeroller.css" rel="stylesheet"
+          type="text/css"/>
 </head>
 <body id='srs_standard'>
 <div align='justify'>
@@ -55,38 +57,12 @@
                                             id='cancleBulkEditButton' value='Cancel Bulk edit'
                                             style='display:none;float:right;' class='pure-button'
                                             name='Cancel Bulk edit' type='button'/><input name='nvcm' type='hidden'
-                                                                                          value=';'/></form>
-                                        <table id='ListAssetsTable' width='100%' border='0' style=''>
-                                            <tr>
-                                                <td class='spokesoft_srs_th'><a name='Column2'
-                                                                                href='#'>Asset
-                                                    Reference</a></td>
-                                                <td class='spokesoft_srs_th'><a name='Column3'
-                                                                                href='#'>Description</a>
-                                                </td>
-                                                <td class='spokesoft_srs_th'><a name='Column4'
-                                                                                href='#'>Customer
-                                                    Account</a></td>
-                                                <td class='spokesoft_srs_th'><a name='Column5'
-                                                                                href='#'>Location</a>
-                                                </td>
-
-
-                                            </tr>
-                                            <c:forEach items="${list}" var="asset">
-                                                <tr>
-                                                    <td class='spokesoft_srs_clean_tbody'><a id='linkAsset1'
-                                                                                             href='/asset/${asset.keyId}'
-                                                                                             class='documentlink'
-                                                                                             name='Asset KC-EML-001'>${asset.assetReference}</a>
-                                                    </td>
-                                                    <td class='spokesoft_srs_clean_tbody'>${asset.description}</td>
-                                                    <td class='spokesoft_srs_clean_tbody'>${asset.customerAccount.name}</td>
-                                                    <td class='spokesoft_srs_clean_tbody'>${asset.location.name}</td>
-                                                </tr>
-                                            </c:forEach>
-                                        </table>
-                                        <input name='nvcm' type='hidden' value=';'/><span><table width='0%'
+                                                                                          value=';'/></form><form
+                                            accept-charset='UNKNOWN' id='ListAssetsForm' method='post'
+                                            name='ListAssetsForm' action='Dispatcher'
+                                            enctype='application/x-www-form-urlencoded'>
+                                        <table id="assetListTable"></table>
+                                        <input name='nvcm' type='hidden' value=';'/></form><span><table width='0%'
                                                                                                         cellspacing='4'
                                                                                                         border='0'>
                                     </table></span></span></span></td>
@@ -102,5 +78,37 @@
         </tr>
     </table>
 </div>
+
 </body>
+
+<script src="/staticmedia/components/datatable/js/jquery.dataTables.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var table;
+    $(document).ready(function () {
+        var url = "/assets?${searchCondition.toString()}";
+        table = $('#assetListTable').dataTable({
+            "sDom": '<"H"lfrC>t<"F"ip>',
+
+            "iDisplayLength": 15,
+            "aLengthMenu": [[15, 25, 50, -1], [15, 25, 50, "All"]],
+            "bSort": true,
+            "bJQueryUI": true,
+            "sPaginationType": "full_numbers",
+            //"aaData": assets,
+            "bServerSide": true,
+            "sAjaxSource": url,
+            "bStateSave": false,
+            "aoColumns": [
+                {
+                    "sTitle": "Asset Reference", "sWidth":"20%", "mDataProp": function (obj) {
+                    return "<a href='/asset/" + obj.keyId + "'>" + obj.assetReference + "</a>";
+                }
+                },
+                {"sTitle": "Description", "sWidth":"30%", "mDataProp": "description"},
+                {"sTitle": "Customer Account", "sWidth":"20%", "mDataProp": "customerAccount.name"},
+                {"sTitle": "Location", "mDataProp": "location.name"}
+            ]
+        });
+    });
+</script>
 </html>

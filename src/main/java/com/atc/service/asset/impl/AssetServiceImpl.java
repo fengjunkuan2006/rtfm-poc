@@ -1,5 +1,7 @@
 package com.atc.service.asset.impl;
 
+import com.atc.common.model.asset.PagedListCondition;
+import com.atc.common.model.asset.PagedListResult;
 import com.atc.domains.asset.IAssetDAO;
 import com.atc.domains.asset.entity.Asset;
 import com.atc.service.asset.IAssetService;
@@ -26,8 +28,8 @@ public class AssetServiceImpl implements IAssetService {
         return result;
     }
 
-    public List<Asset> findAssets(Asset asset) {
-        return assetDAO.findAssets(asset);
+    public PagedListResult findAssets(PagedListCondition condition) {
+        return assetDAO.findAssets(condition);
     }
 
     public Asset get(Integer id, String org) {
