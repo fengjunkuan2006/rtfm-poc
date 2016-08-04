@@ -55,10 +55,7 @@
                                             id='cancleBulkEditButton' value='Cancel Bulk edit'
                                             style='display:none;float:right;' class='pure-button'
                                             name='Cancel Bulk edit' type='button'/><input name='nvcm' type='hidden'
-                                                                                          value=';'/></form><form
-                                            accept-charset='UNKNOWN' id='ListAssetsForm' method='post'
-                                            name='ListAssetsForm' action='Dispatcher'
-                                            enctype='application/x-www-form-urlencoded'>
+                                                                                          value=';'/></form>
                                         <table id='ListAssetsTable' width='100%' border='0' style=''>
                                             <tr>
                                                 <td class='spokesoft_srs_th'><a name='Column2'
@@ -81,7 +78,7 @@
                                                     <td class='spokesoft_srs_clean_tbody'><a id='linkAsset1'
                                                                                              href='/asset/${asset.keyId}'
                                                                                              class='documentlink'
-                                                                                          name='Asset KC-EML-001'>${asset.assetReference}</a>
+                                                                                             name='Asset KC-EML-001'>${asset.assetReference}</a>
                                                     </td>
                                                     <td class='spokesoft_srs_clean_tbody'>${asset.description}</td>
                                                     <td class='spokesoft_srs_clean_tbody'>${asset.customerAccount.name}</td>
@@ -89,7 +86,7 @@
                                                 </tr>
                                             </c:forEach>
                                         </table>
-                                        <input name='nvcm' type='hidden' value=';'/></form><span><table width='0%'
+                                        <input name='nvcm' type='hidden' value=';'/><span><table width='0%'
                                                                                                         cellspacing='4'
                                                                                                         border='0'>
                                     </table></span></span></span></td>
@@ -105,6 +102,5 @@
         </tr>
     </table>
 </div>
-
 </body>
 </html>

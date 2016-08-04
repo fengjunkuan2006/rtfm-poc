@@ -24,7 +24,7 @@
             <td valign='top' width='100%'>
                 <table cellspacing='0' width='100%' border='0' cellpadding='0'>
                     <tr>
-                        <td class='messagebox'><span id='message'></span></td>
+                        <td class='messagebox'><span id='message'><font color="red">${message}</font></span></td>
                     </tr>
                     <tr>
                         <td>
