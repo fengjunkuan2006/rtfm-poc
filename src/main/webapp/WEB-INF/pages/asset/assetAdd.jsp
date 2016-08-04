@@ -226,7 +226,7 @@
             $.ajax({
                 url: "/asset",
                 data: '{"assetReference":"' + $("#Reference").val() + '",' +
-                ' "description":"' + $("#Description").val() + '",' + '"accountId":"1",' + ' "locationId":"1",' +
+                ' "description":"' + $("#Description").val() + '",' + '"accountId":"' + $("#CustomerAccount").val() + '",' + ' "locationId":"' + $("#Location").val() + '",' +
                 '"manufacturer":"' + $("#Manufacturer").val() + '",' +
                 '"serialNumber":"' + $("#SerialNumber").val() + '",' +
                 ' "groupId":"' + $("#AssetGroup").val() + '"}',
