@@ -105,8 +105,22 @@
                 }
                 },
                 {"sTitle": "Description", "sWidth":"30%", "mDataProp": "description"},
-                {"sTitle": "Customer Account", "sWidth":"20%", "mDataProp": "customerAccount.name"},
-                {"sTitle": "Location", "mDataProp": "location.name"}
+                {"sTitle": "Customer Account", "sWidth":"20%", "mDataProp": function (obj) {
+                    if (obj.customerAccount != null) {
+                        return obj.customerAccount.name;
+                    } else {
+                        return "";
+                    }
+                }
+                },
+                {"sTitle": "Location", "mDataProp": function (obj) {
+                    if (obj.location != null) {
+                        return obj.location.name;
+                    } else {
+                        return "";
+                    }
+                }
+                }
             ]
         });
     });
