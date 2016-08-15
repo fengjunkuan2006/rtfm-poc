@@ -5,7 +5,7 @@ import com.atc.domains.asset.entity.Asset;
 import java.util.List;
 
 /**
- * Created by Viki.Feng on 2016/8/4.
+ * Created by Vic.Feng on 2016/8/4.
  */
 public class PagedListResult {
     private String sEcho;

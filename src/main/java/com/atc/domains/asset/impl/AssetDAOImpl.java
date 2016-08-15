@@ -2,14 +2,12 @@ package com.atc.domains.asset.impl;
 
 import com.atc.common.model.asset.PagedListCondition;
 import com.atc.common.model.asset.PagedListResult;
+import com.atc.common.util.DBException;
 import com.atc.domains.asset.IAssetDAO;
 import com.atc.domains.asset.entity.Asset;
 import javafx.application.Application;
 import org.apache.commons.lang3.StringUtils;
-import org.hibernate.SQLQuery;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import org.hibernate.*;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
@@ -18,7 +16,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * Created by Viki.Feng on 10/03/2016.
+ * Created by Vic.Feng on 10/03/2016.
  */
 @Service
 public class AssetDAOImpl implements IAssetDAO {
@@ -30,9 +28,13 @@ public class AssetDAOImpl implements IAssetDAO {
     }
 
     public int insertAsset(Asset asset) {
-        String sql = "INSERT INTO assets (org, key_id, asset_reference, description, group_id, account_id, location_id, manufacturer, serial_number) SELECT org, IFNULL(MAX(key_id), 0) + 1 AS keyId, '" + asset.getAssetReference() + "', '" + asset.getDescription() + "','" + asset.getGroupId() + "','" + asset.getAccountId() + "','" + asset.getLocationId() + "','" + asset.getManufacturer() + "','" + asset.getSerialNumber() + "' FROM assets WHERE org='" + asset.getOrg() + "'";
-        SQLQuery query = getSession().createSQLQuery(sql);
-        return query.executeUpdate();
+        try {
+            String sql = "INSERT INTO assets (org, key_id, asset_reference, description, group_id, account_id, location_id, manufacturer, serial_number) SELECT org, IFNULL(MAX(key_id), 0) + 1 AS keyId, '" + asset.getAssetReference() + "', '" + asset.getDescription() + "','" + asset.getGroupId() + "','" + asset.getAccountId() + "','" + asset.getLocationId() + "','" + asset.getManufacturer() + "','" + asset.getSerialNumber() + "' FROM assets WHERE org='" + asset.getOrg() + "'";
+            SQLQuery query = getSession().createSQLQuery(sql);
+            return query.executeUpdate();
+        } catch (Exception e) {
+            throw new DBException(e.getMessage());
+        }
     }
 
     public PagedListResult findAssets(PagedListCondition condition) {
@@ -70,26 +72,48 @@ public class AssetDAOImpl implements IAssetDAO {
         criteria.setFirstResult(condition.getiDisplayStart());
         criteria.setMaxResults(condition.getiDisplayLength());
 
-        PagedListResult result = new PagedListResult();
-        result.setiTotalRecords(totalCount);
-        result.setiTotalDisplayRecords(totalCount);
-        result.setAaData(criteria.list());
+        try {
+            PagedListResult result = new PagedListResult();
+            result.setiTotalRecords(totalCount);
+            result.setiTotalDisplayRecords(totalCount);
+            result.setAaData(criteria.list());
 
-        return result;
+            return result;
+        } catch (HibernateException e) {
+            throw new DBException(e.getMessage());
+        }
     }
 
+    /**
+     * Get asset by id and org
+     * @param id
+     * @param org
+     * @return
+     */
     public Asset get(Integer id, String org) {
-        org.hibernate.Criteria criteria = getSession().createCriteria(Asset.class);
-        criteria.add(Restrictions.eq("org", org));
-        criteria.add(Restrictions.eq("keyId", id));
-        return (Asset) criteria.list().get(0);
+        try {
+            Criteria criteria = getSession().createCriteria(Asset.class);
+            criteria.add(Restrictions.eq("org", org));
+            criteria.add(Restrictions.eq("keyId", id));
+            return (Asset) criteria.list().get(0);
+        } catch (HibernateException e) {
+            throw new DBException(e.getMessage());
+        }
     }
 
+    /**
+     * update asset
+     * @param asset
+     */
     public void update(Asset asset) {
-        Session session = getSession();
-        Transaction tx = session.beginTransaction();
-        session.update(asset);
-        tx.commit();
-        session.close();
+        try {
+            Session session = getSession();
+            Transaction tx = session.beginTransaction();
+            session.update(asset);
+            tx.commit();
+            session.close();
+        } catch (HibernateException e) {
+            throw new DBException(e.getMessage());
+        }
     }
 }

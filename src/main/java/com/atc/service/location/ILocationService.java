@@ -5,7 +5,7 @@ import com.atc.domains.location.entity.Location;
 import java.util.List;
 
 /**
- * Created by Viki.Feng on 2016/8/1.
+ * Created by Vic.Feng on 2016/8/1.
  */
 public interface ILocationService {
 

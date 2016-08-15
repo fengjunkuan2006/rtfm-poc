@@ -1,7 +1,9 @@
 package com.atc.domains.group.impl;
 
+import com.atc.common.util.DBException;
 import com.atc.domains.group.entity.Group;
 import com.atc.domains.group.IGroupDAO;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -11,7 +13,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * Created by Viki.Feng on 10/03/2016.
+ * Created by Vic.Feng on 10/03/2016.
  */
 @Service
 public class GroupDAOImpl implements IGroupDAO {
@@ -23,11 +25,15 @@ public class GroupDAOImpl implements IGroupDAO {
     }
 
     public List<Group> selectGroup(String org) {
-        org.hibernate.Criteria criteria = getSession().createCriteria(Group.class);
-        criteria.add(Restrictions.eq("org", org));
+        try {
+            org.hibernate.Criteria criteria = getSession().createCriteria(Group.class);
+            criteria.add(Restrictions.eq("org", org));
 
-        List groups = criteria.list();
-        return groups;
+            List groups = criteria.list();
+            return groups;
+        } catch (HibernateException e) {
+            throw new DBException(e.getMessage());
+        }
     }
 }
 

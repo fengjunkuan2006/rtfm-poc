@@ -4,6 +4,8 @@ package com.atc.domains.asset.entity;
 import com.atc.common.model.BasePrimaryID;
 import com.atc.domains.customerAccount.entity.CustomerAccount;
 import com.atc.domains.location.entity.Location;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -36,6 +38,7 @@ public class Asset implements Serializable {
             @JoinColumn(name = "ORG", referencedColumnName = "ORG", insertable = false, updatable = false),
             @JoinColumn(name = "LOCATION_ID", referencedColumnName = "KEY_ID", insertable = false, updatable = false)
     })
+    @NotFound(action=NotFoundAction.IGNORE)
     private Location location;
     @Column(name = "ACCOUNT_ID")
     private Integer accountId;
@@ -44,6 +47,7 @@ public class Asset implements Serializable {
             @JoinColumn(name = "ORG", referencedColumnName = "ORG", insertable = false, updatable = false),
             @JoinColumn(name = "ACCOUNT_ID", referencedColumnName = "KEY_ID", insertable = false, updatable = false)
     })
+    @NotFound(action= NotFoundAction.IGNORE)
     private CustomerAccount customerAccount;
     @Column(name = "GROUP_ID")
     private Integer groupId;

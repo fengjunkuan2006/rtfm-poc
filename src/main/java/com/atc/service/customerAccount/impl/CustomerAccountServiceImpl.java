@@ -3,6 +3,8 @@ package com.atc.service.customerAccount.impl;
 import com.atc.domains.customerAccount.ICustomerAccountDAO;
 import com.atc.domains.customerAccount.entity.CustomerAccount;
 import com.atc.service.customerAccount.ICustomerAccountService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,14 +15,29 @@ import java.util.List;
  */
 @Service
 public class CustomerAccountServiceImpl implements ICustomerAccountService {
+    private final Logger logger = LoggerFactory.getLogger(CustomerAccountServiceImpl.class);
+
     @Autowired
     ICustomerAccountDAO customerAccountDAO;
 
     public int addAccount(CustomerAccount customerAccount) {
-        return customerAccountDAO.insertAccount(customerAccount);
+        int result = 0;
+        try {
+            result = customerAccountDAO.insertAccount(customerAccount);
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
+        return result;
     }
 
     public List<CustomerAccount> getAccounts(String org) {
-        return customerAccountDAO.getAccounts(org);
+        List<CustomerAccount> result = null;
+        try {
+            result = customerAccountDAO.getAccounts(org);
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
+
+        return result;
     }
 }
