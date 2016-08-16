@@ -111,7 +111,7 @@
                                                 <td colspan='3' class='spokesoft_srs_tbody'><select id='CustomerAccount'
                                                                                                     class='inputtext'
                                                                                                     name='accountId'>
-                                                    <option value='-1' label='Please select a account.'> Select an Account.</option>
+                                                    <option value='-1' label='Please select an account.'> Select an Account.</option>
 
                                                 </select><input id='AddAccountButton' value='Add Account'
                                                                 class='pure-button' name='AddAccountButton'
@@ -124,7 +124,7 @@
                                                         name='locationId' id="locationId" type="hidden"
                                                         value="0">
                                                     <select id="Location" class='inputtext'>
-                                                        <option value='-1' label='Please select a account.'> Please select an account.</option>
+                                                        <option value='-1' label='Please select an account.'> Please select an account.</option>
                                                 </select>
                                                     <span id="locat"></span></td>
                                             </tr>

@@ -103,7 +103,7 @@
                                                 <td colspan='3' class='spokesoft_srs_tbody'><span><select id='Location'
                                                                                                           name='Location'
                                                                                                           class='inputtext'>
-                                                    <option value='-1' label='Please select a account.'>Please select an account.</option>
+                                                    <option value='-1' label='Please select an account.'>Please select an account.</option>
                                                 </select></span> <span id="locat"></span></td>
                                             </tr>
                                             <tr>
